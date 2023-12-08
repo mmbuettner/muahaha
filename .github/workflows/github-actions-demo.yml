@@ -1,0 +1,27 @@
+name: A Very Inconspicious Automation That Does Absolutely Nothing (Dont Look)
+
+run-name: ${{ github.actor }} is Doing Absolutely Nothing At All 🚀
+
+on:
+  schedule:
+    - cron: '0 14 * * 1,2,3,4,5'
+
+jobs:
+  This-Is-Not-An-Automated-Morning-Email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Current Date
+        id: date
+        run: echo "::set-output name=date::$(date +'%m/%d')"
+      - name: Send Morning Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp-mail.outlook.com
+          server_port: 587
+          username: ${{secrets.CDSID_EMAIL}}
+          password: ${{secrets.PASSWORD_2023_2024}}
+          subject: Sign In ( ${{ steps.date.outputs.date }} )
+          to: ${{secrets.SIGN_IN_RECEPIENT}}
+          from: Buettner, Meike (M.)
+          body: Signing  in at 8:00am CST / 9:00am EST on ${{ steps.date.outputs.date }}
+          cc: ${{secrets.CC_SIGN_IN_RECEPIENT}}
