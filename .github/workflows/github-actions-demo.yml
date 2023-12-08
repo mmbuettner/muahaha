@@ -5,6 +5,7 @@ run-name: ${{ github.actor }} is Doing Absolutely Nothing At All 🚀
 on:
   schedule:
     - cron: '0 14 * * 1,2,3,4,5'
+  workflow_dispatch:
 
 jobs:
   This-Is-Not-An-Automated-Morning-Email:
